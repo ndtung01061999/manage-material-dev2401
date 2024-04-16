@@ -18,11 +18,6 @@ public class DemoController {
 
     private final StudentService studentService;
 
-    @GetMapping("")
-    public String demo() {
-        return "index";
-    }
-
     @GetMapping("/view/students")
     public String showStudent(Model model) {
         List<Student> studentList = studentService.getAll();

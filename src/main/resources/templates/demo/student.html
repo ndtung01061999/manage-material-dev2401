@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/index}"
+>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{student.css}">
 </head>
 <body>
-<table>
-    <div>
-        <tr class="header">
-            <th>Họ và tên</th>
-            <th>Địa chỉ</th>
-            <th>action</th>
-        </tr>
-        <tr th:each="student : ${students}">
-            <td th:text="${student.name}"></td>
-            <td th:text="${student.address}"></td>
-            <td>
-                <a th:href="@{/view/update-student/{name}(name = ${student.id})}">
-                    Cập nhật sinh viên
-                </a>
-            </td>
-        </tr>
-    </div>
-    <div>
-        <a th:href="@{/view/add-student}">
-            Thêm sinh viên
-        </a>
-    </div>
-</table>
+<div layout:fragment="content" class="container-fluid">
+    <table>
+        <div>
+            <tr class="header">
+                <th>Họ và tên</th>
+                <th>Địa chỉ</th>
+                <th>action</th>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.address}"></td>
+                <td>
+                    <a th:href="@{/view/update-student/{name}(name = ${student.id})}">
+                        Cập nhật sinh viên
+                    </a>
+                </td>
+<!--                <td>-->
+<!--                    <form th:action="@{/student/{id}(id = ${student.id})}"-->
+<!--                          method="post">-->
+<!--                        <input type="hidden">Delete</input>-->
+<!--                        <button type="submit" onClick="return confirm('sure?')"/>-->
+<!--                    </form>-->
+<!--                </td>-->
+                <td>
+                </td>
+            </tr>
+        </div>
+        <div>
+            <a th:href="@{/view/add-student}">
+                Thêm sinh viên
+            </a>
+        </div>
+    </table>
+</div>
 </body>
 </html>

@@ -3,7 +3,13 @@ package com.vn.devmaster.services.service;
 import com.vn.devmaster.services.entities.Student;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,5 +50,21 @@ public class StudentService {
         students = students.stream().peek(item -> {
             if (item.getId() == id) item = s;
         }).collect(Collectors.toList());
+    }
+
+    public static void main(String[] args) throws ParseException {
+        String date = "2024-04-16T19:15";
+
+        SimpleDateFormat datetimeFormatter1 = new SimpleDateFormat(
+                "yyyy-MM-dd'T'HH:mm");
+        Date lFromDate1 = datetimeFormatter1.parse(date);
+        System.out.println("gpsdate :" + lFromDate1);
+        Timestamp fromTS1 = new Timestamp(lFromDate1.getTime());
+        System.out.println(fromTS1);
+//        String dateStr = "2020-08-17T10:11:16.908732";
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(date, format);
+        System.out.println("date time:" + dateTime);
+
     }
 }
